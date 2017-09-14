@@ -1,0 +1,8 @@
+prefix=/home/madis/madiskaspar-rtech/install
+
+Name: beginner_tutorials
+Description: Description of beginner_tutorials
+Version: 0.0.1
+Cflags: -I/home/madis/madiskaspar-rtech/install/include
+Libs: -L/home/madis/madiskaspar-rtech/install/lib 
+Requires: 
