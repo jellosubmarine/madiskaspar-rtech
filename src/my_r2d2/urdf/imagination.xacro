@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<robot name="imagination" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="length" value="1.0" />
+  <xacro:property name="height" value="0.1" />
+  <xacro:property name="depth" value="0.2" />
+  <xacro:property name="pi" value="3.1415" />
+
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+
+  <xacro:macro name="base_block" params="name color *position">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <box size="${length} ${depth} ${height}"/>
+        </geometry>
+        <xacro:insert_block name="position" />
+        <material name="${color}"/>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <xacro:base_block name="base_link" color="white" >
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </xacro:base_block>
+
+  <xacro:base_block name="body" color="black" >
+    <origin rpy="0 ${pi/2} 0" xyz="0 0 ${length/2+height/2}"/>
+  </xacro:base_block>
+
+  <xacro:base_block name="left_arm" color="blue" >
+    <origin rpy="0 ${pi/2} 0" xyz="${-height/2} 0 ${length/2}"/>
+
+  </xacro:base_block>
+
+  <xacro:base_block name="right_arm" color="blue" >
+    <origin rpy="0 ${pi/2} 0" xyz="${height/2} 0 ${length/2}"/>
+  </xacro:base_block>
+
+
+
+  <joint name="base_to_body" type="fixed">
+    <parent link="base_link"/>
+    <child link="body"/>
+  </joint>
+
+  <joint name="body_to_right_arm" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="${pi}" upper="${5}" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="${-height/2} 0 ${length+height/2}"/>
+    <parent link="body"/>
+    <child link="right_arm"/>
+  </joint>
+
+  <joint name="body_to_left_arm" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="${-pi}" upper="${-5}" velocity="0.5"/>
+    <origin rpy="0 0 0" xyz="${height/2} 0 ${length+height/2}"/>
+    <parent link="body"/>
+    <child link="left_arm"/>
+  </joint>
+
+</robot>
