@@ -223,3 +223,6 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 
 add_executable(tester src/tester.cpp)
 target_link_libraries(tester ${catkin_LIBRARIES})
+
+add_executable(triangle src/triangle.cpp)
+target_link_libraries(triangle ${catkin_LIBRARIES})
