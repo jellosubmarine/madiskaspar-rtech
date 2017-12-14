@@ -1,0 +1,25 @@
+<launch>
+ <!-- R2D2 rviz Node-->
+ <param name="robot_description" command="$(find xacro)/xacro.py '$(find my_r2d2)/urdf/r2d2.urdf.xacro'" />
+ <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+ <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+ <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_r2d2)/config/r2d2.rviz" />
+ <!-- joy node -->
+  <node respawn="true" pkg="joy"
+        type="joy_node" name="turtle_joy" >
+    <param name="dev" type="string" value="/dev/input/js1" />
+    <param name="deadzone" value="0.12" />
+  </node>
+
+ <!-- Axes -->
+  <param name="axis_linear" value="1" type="int"/>
+  <param name="axis_angular" value="0" type="int"/>
+  <param name="scale_linear" value="2" type="double"/>
+  <param name="scale_angular" value="2" type="double"/>
+  <node pkg="DS4control" type="turtle_teleop_joy" name="teleop"/>
+  <!-- R2D2 controller -->
+  <node pkg="r2d2_navigator" name="r2d2_navigator" type="fake_r2d2_controller">
+    <remap from="/cmd_vel" to="/turtle1/cmd_vel"/>
+  </node>
+
+</launch>

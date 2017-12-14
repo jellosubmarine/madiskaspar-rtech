@@ -10,7 +10,6 @@ Panels:
         - /TF1
         - /TF1/Frames1
         - /PointStamped1
-        - /PointStamped1/Status1
       Splitter Ratio: 0.590116
     Tree Height: 595
   - Class: rviz/Selection
@@ -263,17 +262,17 @@ Visualization Manager:
     - Alpha: 1
       Class: rviz/PointStamped
       Color: 204; 41; 204
-      Enabled: true
+      Enabled: false
       History Length: 1
       Name: PointStamped
       Radius: 0.2
       Topic: pointXY
       Unreliable: false
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: box
+    Fixed Frame: odom
     Frame Rate: 30
   Name: root
   Tools:
@@ -294,7 +293,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 16.2084
+      Distance: 18.1129
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
@@ -306,11 +305,28 @@ Visualization Manager:
         Z: 0
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: -1.5698
+      Pitch: 1.3198
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.65678
-    Saved: ~
+      Yaw: 4.26677
+    Saved:
+      - Class: rviz/Orbit
+        Distance: 18.1129
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.06
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Name: Orbit
+        Near Clip Distance: 0.01
+        Pitch: 1.3198
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 4.26677
 Window Geometry:
   Camera:
     collapsed: false
